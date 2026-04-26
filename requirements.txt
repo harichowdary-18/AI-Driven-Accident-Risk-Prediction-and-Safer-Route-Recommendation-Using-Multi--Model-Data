@@ -1,0 +1,22 @@
+# Core web framework
+streamlit
+
+# Mapping
+folium
+streamlit-folium
+
+# HTTP requests
+requests
+
+# Geospatial / routing
+osmnx
+networkx
+shapely
+
+# Data processing
+pandas
+numpy
+
+# Machine learning
+scikit-learn
+joblib

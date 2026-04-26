@@ -1,0 +1,10 @@
+{
+  "motorway": 0,
+  "primary": 1,
+  "residential": 2,
+  "secondary": 3,
+  "service": 4,
+  "tertiary": 5,
+  "trunk": 6,
+  "unclassified": 7
+}
