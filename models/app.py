@@ -11,6 +11,7 @@ import numpy as np
 from datetime import datetime
 import networkx as nx
 import math
+from pathlib import Path
 import warnings
 warnings.filterwarnings("ignore", message=".*use_container_width.*")
 warnings.filterwarnings("ignore", message=".*does not have valid feature names.*")
@@ -38,11 +39,16 @@ FIREBASE_BASE_URL = "https://loc-app-sathya-default-rtdb.asia-southeast1.firebas
 def load_ml_model():
     """Load the trained safety prediction model"""
     try:
-        model = joblib.load('safety_model.pkl')
-        encoder = joblib.load('highway_encoder.pkl')
+        base_path = Path(__file__).resolve().parent
+        model_path = base_path / 'safety_model.pkl'
+        encoder_path = base_path / 'highway_encoder.pkl'
+        model = joblib.load(model_path)
+        encoder = joblib.load(encoder_path)
         return model, encoder
     except FileNotFoundError:
-        st.warning("⚠️ ML model not found. Please train the model first using the training script.")
+        st.warning(
+            "⚠️ ML model not found. Please ensure 'safety_model.pkl' and 'highway_encoder.pkl' exist in the models/ folder."
+        )
         return None, None
 
 # ---------- Fetch all users from Firebase ----------

@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Streamlit
+.streamlit/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store

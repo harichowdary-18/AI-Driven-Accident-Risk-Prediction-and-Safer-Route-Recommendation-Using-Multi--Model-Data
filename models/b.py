@@ -9,6 +9,7 @@ import time
 import joblib
 import numpy as np
 from datetime import datetime
+from pathlib import Path
 
 st.set_page_config(layout="wide", page_title="Live Location Tracker with Safety AI")
 
@@ -31,11 +32,16 @@ API_KEY = "ca490bf9719a27199d0cba47047951a9"
 def load_ml_model():
     """Load the trained safety prediction model"""
     try:
-        model = joblib.load('safety_model.pkl')
-        encoder = joblib.load('highway_encoder.pkl')
+        base_path = Path(__file__).resolve().parent
+        model_path = base_path / 'safety_model.pkl'
+        encoder_path = base_path / 'highway_encoder.pkl'
+        model = joblib.load(model_path)
+        encoder = joblib.load(encoder_path)
         return model, encoder
     except FileNotFoundError:
-        st.warning("⚠️ ML model not found. Please train the model first using the training script.")
+        st.warning(
+            "⚠️ ML model not found. Please ensure 'safety_model.pkl' and 'highway_encoder.pkl' exist in the models/ folder."
+        )
         return None, None
 
 # ---------- Fetch live location from Firebase ----------
